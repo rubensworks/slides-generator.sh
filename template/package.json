@@ -1,0 +1,21 @@
+{
+  "name": "@rubensworks/%REPO_NAME%",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ruben Taelman <ruben.taelman@ugent.be>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "shower serve",
+    "pdf": "shower pdf",
+    "archive": "shower archive",
+    "prepare": "shower prepare"
+  },
+  "dependencies": {
+    "shower-core": "^2.1.0",
+    "shower-material": "^2.1.2"
+  },
+  "devDependencies": {
+    "shower-cli": "^0.2.1"
+  }
+}

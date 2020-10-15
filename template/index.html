@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="foaf: http://xmlns.com/foaf/0.1/">
+    <title>%TITLE%</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="node_modules/shower-material/styles/styles.css">
+    <link rel="stylesheet" href="styles/rt-custom.css" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    
+    <link rel="foaf:maker" href="https://www.rubensworks.net/#me" />
+
+    <style>
+      .shower {
+        --slide-ratio: calc(16 / 9);
+      }
+    </style>
+  </head>
+
+  <body class="shower list" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# org: http://www.w3.org/ns/org# schema: http://schema.org/ cite: http://purl.org/spar/cito/" typeof="schema:PresentationDigitalDocument">
+    <header class="caption">
+      <div class="title">
+        <h1 property="schema:name">%TITLE%</h1>
+      </div>
+      <div class="captiondata">
+        <p class="author" rel="schema:author"><a href="https://www.rubensworks.net/#me">Ruben Taelman</a></p>
+        <p class="venue">
+          <a href="%VENUE_URL%">%VENUE_NAME%</a>, <span rel="schema:datePublished">%VENUE_DATE%</span></a>
+        </p>
+      </div>
+    </header>
+
+    <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
+      <h2 property="schema:name">%TITLE%</h2>
+      <ul class="author inline">
+          <li class="current"><a href="https://www.rubensworks.net/">Ruben Taelman</a></li>
+      </ul>
+      <p class="affiliation"><a href="http://idlab.technology/">Ghent University – imec – IDLab, Belgium</a></p>
+    </section>
+
+    <section id="start" class="slide" style="background-image: url('img/TODO.jpg')" inlist="" rel="schema:hasPart" resource="#start">
+        <h2 property="schema:name" class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">INTRO</h2>
+        <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
+            <li>TODO</li>
+        </ul>
+    </section>
+	
+    <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
+      <ul>
+        <li><a href="#index-a">TODO</a></li>
+		<li><a href="#index-b">TODO</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-a" class="slide index" inlist="" rel="schema:hasPart" resource="#index-a">
+      <ul>
+        <li class="current"><a href="#index-a">TODO</a></li>
+		<li><a href="#index-b">TODO</a></li>
+      </ul>
+    </section>
+	
+    <section id="some-slide" class="slide" inlist="" rel="schema:hasPart" resource="#some-slide">
+      <h2 property="schema:name">TODO: A regular slide</h2>
+      <ul>
+          <li>
+          	  <h3>A</h3>
+			  <span class="indent">TODO: Description</span>
+          </li>
+          <li>B</li>
+          <li>C</li>
+      </ul>
+    </section>
+	
+    <section id="conclusion" class="slide" inlist="" rel="schema:hasPart" resource="#conclusion">
+      <h2 property="schema:name" class="big">TODO: Conclusion</h2>
+    </section>
+
+    <footer>
+      <p class="license">
+            &#169; <span property="schema:copyrightYear">%YEAR%</span> <a href="https://www.rubensworks.net" rel="schema:copyrightHolder"><span resource="https://www.rubensworks.net/#me">Ruben Taelman</span></a>
+            — <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" property="schema:license">Creative Commons Attribution 4.0</a>, unless otherwise indicated.
+      </p>
+      <a href="https://github.com/rubensworks/%REPO_NAME%">Source</a>
+    </footer>
+
+    <script src="node_modules/shower-core/shower.min.js"></script>
+  </body>
+</html>

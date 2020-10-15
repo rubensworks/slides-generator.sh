@@ -1,0 +1,71 @@
+#!/bin/bash
+# Generates a new Web slides repo
+
+print_usage () {
+    echo "Usage: slides-generate <repo-name> <title>"
+    echo "Example: slides-generate \"slides-2020-iswc-ssws-amf\" \"AMF in TPF\" \"SSWS 2020\" \"2 November 2020\" \"http://www.ssws-ws.org/SSWS2020/\""
+    exit 1
+}
+
+# Validate input args
+if ! [[ $# -eq 5 ]] ; then
+    echo "Error: Missing input arguments"
+    print_usage
+fi
+name=$1
+title=$2
+venue_name=$3
+venue_date=$4
+venue_url=$5
+year=$(date +"%Y")
+
+# Make sure the target dir does not exist yet
+dir="$(pwd)/$name"
+if [ -d "$dir" ]; then
+    echo "The target directory '$dir' already exists."
+    exit 1
+fi
+
+# Make sure we are logged in from the GitHub CLI
+if ! gh auth status > /dev/null 2>&1; then
+    echo "You are not logged in via the GitHub CLI, please run 'gh auth login'"
+    exit 1
+fi
+
+# Make sure the GitHub repo does not exist yet
+if gh repo view $name > /dev/null 2>&1; then
+    echo "The repository '$name' already exists for your account. Please use a different name."
+    exit 1
+fi
+
+# Copy the template folder
+echo -e "\033[1m\033[34mCopying template folder\033[0m"
+template_dir="$(dirname "${BASH_SOURCE[0]}")/../template"
+cp -r $template_dir $dir
+sed -i.bak "s/%REPO_NAME%/$name/g" $dir/README.md
+sed -i.bak "s/%TITLE%/$title/g" $dir/README.md
+sed -i.bak "s/%VENUE_NAME%/$venue_name/g" $dir/README.md
+sed -i.bak "s/%REPO_NAME%/$name/g" $dir/package.json
+sed -i.bak "s/%REPO_NAME%/$name/g" $dir/index.html
+sed -i.bak "s/%TITLE%/$title/g" $dir/index.html
+sed -i.bak "s/%YEAR%/$year/g" $dir/index.html
+sed -i.bak "s/%VENUE_NAME%/$venue_name/g" $dir/index.html
+sed -i.bak "s/%VENUE_DATE%/$venue_date/g" $dir/index.html
+sed -i.bak "s~%VENUE_URL%~$venue_url~g" $dir/index.html
+rm $dir/*.bak
+
+# Install repo
+echo -e "\033[1m\033[34mInstalling npm dependencies\033[0m"
+pushd $dir > /dev/null
+npm install --quiet
+
+# Create GitHub repo, and push
+echo -e "\033[1m\033[34mCreating GitHub repository\033[0m"
+git init > /dev/null
+gh repo create $name --description "Slides for $venue_name on $title" --public --homepage "https://rubensworks.github.io/$name/" --confirm
+git add . > /dev/null
+git commit -m "Initial commit" > /dev/null
+git push -u origin master > /dev/null 2>&1
+popd > /dev/null
+
+echo -e "\033[1m\033[34mDone! 🎉 Initialized repo at '$dir', with public repo at 'https://github.com/rubensworks/$name/'\033[0m"
