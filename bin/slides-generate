@@ -62,7 +62,7 @@ npm install --quiet
 # Create GitHub repo, and push
 echo -e "\033[1m\033[34mCreating GitHub repository\033[0m"
 git init > /dev/null
-gh repo create $name --description "Slides for $venue_name on $title" --public --homepage "https://rubensworks.github.io/$name/" --confirm
+gh repo create $name --description "Slides for $venue_name on $title" --public --homepage "https://rubensworks.github.io/$name/" --source . --confirm
 git add . > /dev/null
 git commit -m "Initial commit" > /dev/null
 git push -u origin master > /dev/null 2>&1
