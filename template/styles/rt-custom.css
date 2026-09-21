@@ -18,7 +18,6 @@
     --rt-code-bg: #f1f5f9;
     --rt-code-ink: #123b63;
     --rt-zebra: rgba(43, 167, 255, 0.07);
-    --rt-num: #9aa3ad;
 
     --color-key: var(--rt-sky);
     --color-light: var(--rt-line);
@@ -98,17 +97,9 @@ footer a {
     line-height: 1.5;
 }
 
-/* Slide number, bottom right */
+/* No slide numbers */
 .slide::after {
-    display: block;
-    left: auto;
-    right: 28px;
-    bottom: 16px;
-    color: var(--rt-num);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-    text-align: right;
+    display: none;
 }
 
 .progress {
@@ -275,10 +266,6 @@ li.inactive {
     background: var(--rt-sky);
 }
 
-.slide.title::after {
-    color: rgba(255, 255, 255, 0.45);
-}
-
 .slide.title h2 {
     margin: 0 0 18px;
     padding: 0;
@@ -341,10 +328,6 @@ li.inactive {
     left: 0;
     width: 16px;
     background: var(--rt-sky);
-}
-
-.slide.index::after {
-    color: rgba(255, 255, 255, 0.45);
 }
 
 .slide.index ul {
